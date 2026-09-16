@@ -25,7 +25,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: request-logger
-          image: ghcr.io/liam-mackie/request-logger:sha-cc08a28a73ba09963f17ee55b06f1ca49676aa82
+          image: ghcr.io/liam-mackie/request-logger:sha-f7cfa2755a5b6d72265df7c8810cf013fe2a5f31
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
