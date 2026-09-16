@@ -18,11 +18,14 @@ spec:
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
+        # Numeric uid: the kubelet cannot verify distroless's named "nonroot" user.
+        runAsUser: 65532
+        runAsGroup: 65532
         seccompProfile:
           type: RuntimeDefault
       containers:
         - name: request-logger
-          image: ghcr.io/liam-mackie/request-logger:latest
+          image: ghcr.io/liam-mackie/request-logger:sha-cc08a28a73ba09963f17ee55b06f1ca49676aa82
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
