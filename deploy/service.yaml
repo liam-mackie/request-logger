@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: request-logger
+  namespace: request-logger
+  labels:
+    app.kubernetes.io/name: request-logger
+spec:
+  selector:
+    app.kubernetes.io/name: request-logger
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http

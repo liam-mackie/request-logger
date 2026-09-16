@@ -1,0 +1,19 @@
+# TLS termination for :443. Matches how every other app on gke.beans.sh is
+# exposed; the Gateway's :443 listener cannot accept an HTTPRoute.
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: request-logger
+  namespace: request-logger
+spec:
+  ingressClassName: contour
+  virtualhost:
+    fqdn: webhooks.gke.beans.sh
+    tls:
+      secretName: webhooks-tls
+  routes:
+    - conditions:
+        - prefix: /
+      services:
+        - name: request-logger
+          port: 8080
